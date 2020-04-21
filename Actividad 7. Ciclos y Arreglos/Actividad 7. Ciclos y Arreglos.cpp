@@ -4,7 +4,6 @@
 int main()
 {
 	system("color 0B");
-	
 	int num;
 	int n;
 	int i;
