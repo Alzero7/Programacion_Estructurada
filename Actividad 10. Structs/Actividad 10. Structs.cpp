@@ -3,116 +3,193 @@
 #include <string.h>
 
 
-struct Variables{
-	int ID;
-	int Answer;
-	int i;
-};
-	
-typedef struct Variables  Herramientas;
-
-
 struct Informacion_Estudiante{
-	char ID_estudiante[4];
+	char ID_estudiante[5];
 	char Nombre[25];
 	char Ap_Pat[25];
 	char Ap_Mat[25];
-	char Registro[100];
+	int Dia;
+	int Mes;
+	int Year;
+	char Facultad[50];
+	char Carrera[50];
+	char Semetre[50];
+	char Genero[12];
 };
 	
 typedef struct Informacion_Estudiante  Datos;	
 
 
 int main()
-{	
-	Herramientas Tool;
-	Tool.i=0;
-	Tool.ID=0;
-	Tool.Answer=0;
+{
+	int Answer=0;
+	int ID=0;
+	int i=0;
+	int op=0;
 	
-	system("color 0B");
+	printf("\n\t Ingrese el numero de personas a capturar: ");
+	scanf("%d",&Answer);
 	
-	printf("\n\t Ingrese la cantidad de personas a registrar:  ");
-	scanf("%d",&Tool.Answer);
+	Datos Registros[Answer+1];
 	
-	Datos Data[Tool.Answer];
-	for(Tool.i=0;Tool.i<Tool.Answer;Tool.i++)
+	for(i=0;i<Answer;i++)
 	{
-		memset(Data[Tool.i].ID_estudiante,0,4);
-		memset(Data[Tool.i].Nombre,0,25);
-		memset(Data[Tool.i].Ap_Pat,0,25);
-		memset(Data[Tool.i].Ap_Mat,0,25);
-		memset(Data[Tool.i].Registro,0,100);	
-	}
-	
-	Tool.i=0;
+		system("cls");
+		fflush(stdin);
 		
-	do
-	{
+		printf("\n\t Ingrese su ID: ");
+		gets(Registros[i].ID_estudiante);
+				
+		system("cls");
+		fflush(stdin);
+		
+		printf("\n\t Ingrese su Nombre: ");
+		gets(Registros[i].Nombre);
+		
+		system("cls");
+		fflush(stdin);
+		
+		printf("\n\t Ingrese su Apellido Paterno: ");
+		gets(Registros[i].Ap_Pat);
+		
+		system("cls");
+		fflush(stdin);
+		
+		printf("\n\t Ingrese su Apellido Materno: ");
+		gets(Registros[i].Ap_Mat);
+		
+		system("cls");
+		fflush(stdin);
+		
 		do
 		{
+			printf("\n\t Ingrese su Mes de Nacimiento: ");
+			scanf("%d",&Registros[i].Mes);
+	
 			system("cls");
-			printf("\n\t Ingrese su ID:  ");
-			scanf("%d",&Tool.ID);
-		}while(Tool.ID<1000 || Tool.ID>9999);
+			fflush(stdin);
+		}while(Registros[i].Mes<0 || Registros[i].Mes>12);
 		
-		sprintf(Data[Tool.i].ID_estudiante,"%d",Tool.ID);
-		
-		system("cls");
-		fflush(stdin);
-		
-		printf("\n\t Ingrese su nombre:  ");
-		gets(Data[Tool.i].Nombre);
-		
-		system("cls");
-		fflush(stdin);
-		
-		printf("\n\t Ingrese su apellido paterno:  ");
-		gets(Data[Tool.i].Ap_Pat);
-		
-		system("cls");
-		fflush(stdin);
-		
-		printf("\n\t Ingrese su apellido materno:  ");
-		gets(Data[Tool.i].Ap_Mat);
-		
-		system("cls");
-		fflush(stdin);
-		
-		strcat(Data[Tool.i].Registro,Data[Tool.i].ID_estudiante);
-		strcat(Data[Tool.i].Registro,"  ");
-		strcat(Data[Tool.i].Registro,Data[Tool.i].Nombre);
-		strcat(Data[Tool.i].Registro," ");
-		strcat(Data[Tool.i].Registro,Data[Tool.i].Ap_Pat);
-		strcat(Data[Tool.i].Registro," ");
-		strcat(Data[Tool.i].Registro,Data[Tool.i].Ap_Mat);	
-		
-		if(Tool.i>0)
+		op=0;
+		do
 		{
-			for(int j=0;j<Tool.i;j++)
+			printf("\n\t Ingrese su Dia de Nacimiento: ");
+			scanf("%d",&Registros[i].Dia);
+	
+			system("cls");
+			fflush(stdin);
+			
+			if((Registros[i].Mes==1 || Registros[i].Mes==3 || Registros[i].Mes==5 || Registros[i].Mes==7 || Registros[i].Mes==8 || Registros[i].Mes==10 || Registros[i].Mes==12) && (Registros[i].Dia>0 || Registros[i].Dia<=31))
 			{
-				if(strncmp(Data[Tool.i].Registro,Data[j].Registro,4)==0)
+				op=1;
+			}
+			else
+			{
+				if((Registros[i].Mes==4 || Registros[i].Mes==6 || Registros[i].Mes==9 || Registros[i].Mes==11) && (Registros[i].Dia>0 || Registros[i].Dia<=30))
 				{
-					memset(Data[Tool.i].Registro,0,50);
-					memset(Data[j].Registro,0,50);
+					op=1;
+				}
+				else
+				{
+					if(Registros[i].Mes==2 && Registros[i].Dia==28)
+					{
+						op=1;
+					}
+				}
+			}
+		}while(op!=1);
+		
+		op=0;
+		do
+		{
+			printf("\n\t Ingrese su A%co de Nacimiento: ",164);
+			scanf("%d",&Registros[i].Year);
+	
+			system("cls");
+			fflush(stdin);
+			
+			if(Registros[i].Year<1950 || Registros[i].Year>2019)
+			{
+				op=1;
+			}
+		}while(op!=1);
+		
+		
+		printf("\n\t Ingrese su Facultad: ");
+		gets(Registros[i].Facultad);
+		
+		system("cls");
+		fflush(stdin);
+		
+		printf("\n\t Ingrese su Carrera: ");
+		gets(Registros[i].Carrera);
+		
+		system("cls");
+		fflush(stdin);
+		
+		printf("\n\t Ingrese su Semestre: ");
+		gets(Registros[i].Semetre);
+		
+		system("cls");
+		fflush(stdin);
+		
+		printf("\n\t Ingrese su Genero: ");
+		gets(Registros[i].Genero);
+		
+		system("cls");
+		fflush(stdin);
+		
+		if(i>0)
+		{
+			for(int j=0;j<i;j++)
+			{
+				if(strncmp(Registros[i].ID_estudiante,Registros[j].ID_estudiante,4)==0)
+				{
+					memset(Registros[i].ID_estudiante,0,150);
+					memset(Registros[i].Nombre,0,25);
+					memset(Registros[i].Ap_Pat,0,25);
+					memset(Registros[i].Ap_Mat,0,25);
+					memset(Registros[i].Facultad,0,50);
+					memset(Registros[i].Carrera,0,50);
+					memset(Registros[i].Semetre,0,50);
+					memset(Registros[i].Genero,0,50);
+					Registros[i].Dia=0;
+					Registros[i].Mes=0;
+					Registros[i].Year=0;
+					memset(Registros[j].ID_estudiante,0,12);
+					memset(Registros[j].Nombre,0,25);
+					memset(Registros[j].Ap_Pat,0,25);
+					memset(Registros[j].Ap_Mat,0,25);
+					memset(Registros[j].Facultad,0,50);
+					memset(Registros[j].Carrera,0,50);
+					memset(Registros[j].Semetre,0,50);
+					memset(Registros[j].Genero,0,50);
+					Registros[j].Dia=0;
+					Registros[j].Mes=0;
+					Registros[j].Year=0;
 				}
 			}
 		}
-		Tool.i++;
-	}while(Tool.i<Tool.Answer);
+	}
+		
 	
-	system("cls");
-	for(Tool.i=0;Tool.i<Tool.Answer;Tool.i++)
+	
+	for(i=0;i<Answer;i++)
 	{
-		if(strcmp(Data[Tool.i].Registro,"")==0)
+		if(strcmp(Registros[i].ID_estudiante,"")!=0)
 		{
-			Tool.i=Tool.i;
-		}
-		else
-		{
-			printf("\n\t ");
-			printf("%s",Data[Tool.i].Registro);
+			printf("\n\t ID: %s",Registros[i].ID_estudiante);
+			printf("\n\t Nombre:   %s %s %s",Registros[i].Nombre,Registros[i].Ap_Pat,Registros[i].Ap_Mat);
+			printf("\n\t Fecha de Nacimiento: %d / %d / %d",Registros[i].Dia,Registros[i].Mes,Registros[i].Year);
+			printf("\n\t Facultad: %s",Registros[i].Facultad);
+			printf("\n\t Carrera:  %s",Registros[i].Carrera);
+			printf("\n\t Semestre: %s",Registros[i].Semetre);
+			printf("\n\t Genero:   %s",Registros[i].Genero);
 		}
 	}
+	
+	
+	
+		
 	return 0;
 }
