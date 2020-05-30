@@ -81,7 +81,6 @@ int main()
 	}
 		
 	
-	
 	for(i=0;i<Answer;i++)
 	{
 		if(strcmp(Registros[i].ID_estudiante,"")!=0)
